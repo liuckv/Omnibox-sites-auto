@@ -5,8 +5,8 @@ import fs from "node:fs/promises";
 const SOURCE_FULL =
   "https://py.doube.eu.org/static/t4.json",
   "https://raw.githubusercontent.com/rapier15sapper/ew/refs/heads/main/test.json";
-const SOURCE_LITE =
-  "https://raw.githubusercontent.com/hafrey1/LunaTV-config/refs/heads/main/jingjian.json";
+//const SOURCE_LITE =
+  //"https://raw.githubusercontent.com/hafrey1/LunaTV-config/refs/heads/main/jingjian.json";
 
 /** 判断名称是否英文开头，用于“英文在前、中文在后”排序 */
 function isEnglish(str) {
