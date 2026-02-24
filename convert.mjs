@@ -3,7 +3,8 @@ import fs from "node:fs/promises";
 
 // 两个源文件（完整版 + 精简版）
 const SOURCE_FULL =
-  "https://raw.githubusercontent.com/hafrey1/LunaTV-config/refs/heads/main/LunaTV-config.json";
+  "https://py.doube.eu.org/static/t4.json",
+  "https://raw.githubusercontent.com/rapier15sapper/ew/refs/heads/main/test.json";
 const SOURCE_LITE =
   "https://raw.githubusercontent.com/hafrey1/LunaTV-config/refs/heads/main/jingjian.json";
 
