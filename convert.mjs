@@ -1,44 +1,27 @@
 import fs from "fs";
 
-const sources = [
-    "https://raw.githubusercontent.com/rapier15sapper/ew/refs/heads/main/test.json"
-];
+const url = "https://raw.githubusercontent.com/rapier15sapper/ew/refs/heads/main/test.json";
 
-const allData = [];
+const res = await fetch(url);
+const original = await res.json();
 
-for (const url of sources) {
-  try {
-    console.log("读取:", url);
-    const res = await fetch(url);
-    const data = await res.json();
-
-    if (Array.isArray(data)) {
-      allData.push(...data);
-    } else if (data.data) {
-      allData.push(...data.data);
-    }
-  } catch (err) {
-    console.log("失败:", url, err.message);
-  }
-}
-
-// 去重（按 api）
-const unique = {};
-for (const item of allData) {
-  if (item.api) {
-    unique[item.api] = item;
-  }
-}
+const converted = original
+  .filter(item => item.enabled === true) // 只保留启用的
+  .map(item => ({
+    name: item.name,
+    type: 0,
+    api: item.baseUrl,
+    searchable: 1,
+    quickSearch: 1,
+    filterable: 1
+  }));
 
 const output = {
   code: 0,
   msg: "success",
-  data: Object.values(unique)
+  data: converted
 };
 
-fs.writeFileSync(
-  "sitesFull.json",
-  JSON.stringify(output, null, 2)
-);
+fs.writeFileSync("omnibox.json", JSON.stringify(output, null, 2));
 
-console.log("完成，共", Object.keys(unique).length, "条");
+console.log("转换完成，共", converted.length, "条");
