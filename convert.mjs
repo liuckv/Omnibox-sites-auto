@@ -1,8 +1,7 @@
 import fs from "fs";
 
 const sources = [
-  "https://py.doube.eu.org/static/t4.json",
-  "https://raw.githubusercontent.com/rapier15sapper/ew/refs/heads/main/test.json"
+    "https://raw.githubusercontent.com/rapier15sapper/ew/refs/heads/main/test.json"
 ];
 
 const allData = [];
