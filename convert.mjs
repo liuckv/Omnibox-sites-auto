@@ -6,10 +6,11 @@ const res = await fetch(url);
 const original = await res.json();
 
 const converted = original
-  .filter(item => item.enabled === true) // 只保留启用的
+  .filter(item => item.enabled === true)
   .map(item => ({
+    key: item.id,              // 必须加 key
     name: item.name,
-    type: 0,
+    type: 3,                   // 3 = CMS接口
     api: item.baseUrl,
     searchable: 1,
     quickSearch: 1,
