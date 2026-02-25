@@ -1,26 +1,35 @@
 import fs from "fs";
+import crypto from "crypto";
 
 const url = "https://raw.githubusercontent.com/rapier15sapper/ew/refs/heads/main/test.json";
 
 const res = await fetch(url);
 const original = await res.json();
 
+function uuid() {
+  return crypto.randomUUID();
+}
+
 const converted = original
   .filter(item => item.enabled === true)
   .map(item => ({
-    key: item.id,              // 必须加 key
+    id: uuid(),
+    key: item.name,
     name: item.name,
-    type: 3,                   // 3 = CMS接口
     api: item.baseUrl,
-    searchable: 1,
-    quickSearch: 1,
-    filterable: 1
+    type: 2,                 // OmniBox CMS 类型
+    isActive: 1,
+    time: new Date().toISOString(),
+    isDefault: 0,
+    remark: "",
+    tags: [],
+    priority: 0,
+    proxyMode: "none",
+    customProxy: ""
   }));
 
 const output = {
-  code: 0,
-  msg: "success",
-  data: converted
+  sites: converted
 };
 
 fs.writeFileSync("omnibox.json", JSON.stringify(output, null, 2));
