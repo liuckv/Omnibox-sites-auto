@@ -1,7 +1,6 @@
 import fs from "fs";
 import crypto from "crypto";
 
-//const url = "https://raw.githubusercontent.com/rapier15sapper/ew/refs/heads/main/test.json"
 const url = "https://16409.kstore.vip/tv/ngzmods.json";
 const res = await fetch(url);
 const original = await res.json();
